@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ReaderMapper">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        username, fullname, password, regTime
+    </sql>
+
+    <select id="getBReader"  resultType="com.example.demo.vo.BReaderVo">
+        select b.id bId,b.author bAuthor,b.description bDesc,b.title bTitle,r.fullname rName
+        from book  b
+        inner join reader r ON r.username = b.reader
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+</mapper>
